@@ -19,7 +19,7 @@ export default function Login() {
     };
 
     try {
-      const response = await fetch(`${host}/user/login`, {
+      const response = await fetch(`${process.env.HOST}/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

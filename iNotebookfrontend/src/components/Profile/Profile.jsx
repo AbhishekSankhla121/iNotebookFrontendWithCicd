@@ -36,7 +36,7 @@ const Card = ({ user }) => {
           <h1>User Profile</h1>
           {user.user.map((item, index) => (
             <div className="column a-center" key={index}>
-              <img src={`${host}/image/${item.profile}`} alt="" />
+              <img src={`${process.env.HOST}/image/${item.profile}`} alt="" />
               <h3 className="margin">Name: {item.name}</h3>
               <div className="details">
                 <p className="margin">Email: {item.email}</p>

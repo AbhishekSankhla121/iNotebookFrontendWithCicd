@@ -49,7 +49,7 @@ export default function Register() {
     formdata.append("image", img);
 
     try {
-      const response = await axios.post(`${host}/user/userdetail`, formdata, {
+      const response = await axios.post(`${process.env.HOST}/user/userdetail`, formdata, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
