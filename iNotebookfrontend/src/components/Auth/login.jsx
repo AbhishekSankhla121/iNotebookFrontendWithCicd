@@ -5,7 +5,7 @@ import { useContext } from "react";
 import userContext from "../../context/createcontext";
 
 export default function Login() {
-  const host = process.env.REACT_APP_HOST;
+  const host = process.env.REACT_APP_BACKEND_URL;
   const { Alert } = useContext(userContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,7 +19,8 @@ export default function Login() {
     };
 
     try {
-      const response = await fetch(`${process.env.HOST}/user/login`, {
+      console.log(process.env.REACT_APP_BACKEND_URL)
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

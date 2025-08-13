@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import userContext from "./createcontext";
 
 const Userstate = (props) => {
-    const host = process.env.REACT_APP_HOST;
+    const host = process.env.HOST;
     const [userProfile, setUserProfile] = useState({});
     const [userNote, setUserNote] = useState('');
     const [color, setColor] = useState("");
@@ -22,7 +22,7 @@ const Userstate = (props) => {
 
     const fetchUserProfile = async () => {
         try {
-            const response = await fetch(`${process.env.HOST}/user/userdetail`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/user/userdetail`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -40,7 +40,7 @@ const Userstate = (props) => {
         try {
 
 
-            const response = await fetch(`${process.env.HOST}/notes/addnote`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/notes/addnote`, {
                 method: "POST",
                 headers: {
                     "auth-token": localStorage.token,
@@ -70,7 +70,7 @@ const Userstate = (props) => {
 
     const fetchUserNote = async () => {
         try {
-            const response = await fetch(`${process.env.HOST}/notes/fetchnote`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/notes/fetchnote`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -86,7 +86,7 @@ const Userstate = (props) => {
 
     const deleteNote = async ({ id }) => {
         try {
-            const response = await fetch(`${process.env.HOST}/notes/deletenote/${id}`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/notes/deletenote/${id}`, {
                 method: "DELETE",
                 headers: {
                     "auth-token": localStorage.token,
@@ -109,7 +109,7 @@ const Userstate = (props) => {
 
             const { id, title, description, tag } = data;
             console.log(id, title, description, tag)
-            const response = await fetch(`${process.env.HOST}/notes/update/${id}`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/notes/update/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

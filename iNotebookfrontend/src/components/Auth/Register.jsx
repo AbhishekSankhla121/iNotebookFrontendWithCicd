@@ -6,7 +6,7 @@ import userContext from "../../context/createcontext";
 import { useContext } from "react";
 
 export default function Register() {
-  const host = process.env.REACT_APP_HOST;
+  const host = process.env.REACT_APP_BACKEND_URL;
   const { Alert } = useContext(userContext);
   const navigate = useNavigate();
 
@@ -49,7 +49,7 @@ export default function Register() {
     formdata.append("image", img);
 
     try {
-      const response = await axios.post(`${process.env.HOST}/user/userdetail`, formdata, {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/userdetail`, formdata, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
