@@ -1,0 +1,25 @@
+.login {
+  padding: 20px;
+  width: 40%;
+  margin: 100px auto;
+  box-shadow: 0 0 5px rgb(150, 21, 150);
+  border-radius: 6px;
+}
+@media screen and (max-width: 1000px) {
+  .Register {
+    width: 67%;
+  }
+  .login,
+  .loginpage {
+    width: 67%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .Register {
+    width: 90%;
+  }
+  .login,
+  .loginpage {
+    width: 90%;
+  }
+}

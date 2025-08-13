@@ -1,0 +1,11 @@
+.profile {
+  padding: 50px;
+  width: 60%;
+  margin: 60px auto;
+  box-shadow: 0 0 8px rgba(170, 11, 170, 0.778);
+  border-radius: 8px;
+}
+
+.mt {
+  margin-top: 20px;
+}

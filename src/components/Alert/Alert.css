@@ -1,0 +1,18 @@
+.alert {
+  padding: 5px;
+  height: 40px;
+  color: aliceblue;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.ml {
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .alert {
+    font-size: 10px;
+  }
+}

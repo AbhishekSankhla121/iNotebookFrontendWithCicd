@@ -1,0 +1,205 @@
+.add-note {
+  justify-content: space-evenly;
+  margin-top: 30px;
+  width: 100%;
+}
+fa-solid {
+  font-weight: 900;
+  font-size: 80%;
+}
+.add-left {
+  width: 20%;
+  padding: 20px;
+  height: 30%;
+  box-shadow: 0 0 15px purple;
+  border-radius: 8px;
+}
+.add-right {
+  width: 65%;
+  padding: 40px;
+}
+
+.add-right > .create-note {
+  box-shadow: 0 0 15px purple;
+  border-radius: 8px;
+  width: 60%;
+}
+
+.show-card {
+  width: 100%;
+  margin: 40px 0;
+}
+
+.note {
+  overflow-y: auto;
+
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  max-height: 480px;
+}
+.note::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar for webkit browsers */
+}
+.note-card {
+  width: 85%;
+  height: 200px;
+  box-shadow: 0 0 8px purple;
+  border-radius: 8px;
+  margin: 7% auto;
+  position: relative;
+}
+.note-card-heading {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: auto;
+  width: 80%;
+}
+body {
+  overflow-y: auto;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+.note-card-heading::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar for webkit browsers */
+}
+.j-btw {
+  justify-content: space-between;
+}
+.mr {
+  margin-right: 10px;
+  font-size: 11px;
+}
+
+.note-head {
+  background-color: purple;
+  padding: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: aliceblue;
+  font-family: cursive;
+}
+
+.notes-heading {
+  background-color: rgba(120, 9, 120, 0.363);
+  border-radius: 5px;
+  box-shadow: 0 0 5px purple;
+  color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  margin: 50px 0 30px 0;
+}
+
+.note-card-description {
+  display: flex;
+  word-wrap: break-word;
+  padding: 5px 10px;
+  height: 70%;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+.note-card-description::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar for webkit browsers */
+}
+.note-description {
+  font-family: none;
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  word-spacing: 5px;
+  width: 100%;
+}
+.note-card-details {
+  position: absolute;
+  display: flex;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  width: 100%;
+  justify-content: center;
+  color: rgba(251, 78, 210, 0.434);
+  bottom: 3px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.tag {
+  overflow-x: auto;
+  width: 40px;
+}
+
+.tag::-webkit-scrollbar {
+  display: none;
+}
+
+.btn {
+  width: 150px;
+}
+
+@media screen and (max-width: 1500px) {
+  .add-left {
+    word-wrap: unset;
+    font-size: 10px;
+    word-wrap: unset;
+    font-size: 10px;
+    padding: 20px 0;
+  }
+
+  .note-card-heading,
+  .note-card-heading > h5 {
+    max-width: 100px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .add-note {
+    flex-direction: column;
+    align-items: center;
+  }
+  .add-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .add-left {
+    width: 80%;
+    padding: 20px;
+    height: 30%;
+    box-shadow: 0 0 15px purple;
+    border-radius: 8px;
+  }
+  .note {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+  .profile {
+    width: 90%;
+  }
+  input {
+    width: 80%;
+  }
+  .add-right > .create-note {
+    box-shadow: 0 0 15px purple;
+    border-radius: 8px;
+    width: 80%;
+  }
+  .note-card-heading,
+  .note-card-heading > h5 {
+    max-width: 80%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .note {
+    grid-template-columns: 100%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .add-right {
+    padding: 40px 0;
+    width: 100%;
+  }
+}
