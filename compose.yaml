@@ -1,13 +1,22 @@
 name: "iNoteBookCiCD"
 services:
   frontend:
-    build:
-      context: /iNotebookfrontend
-      dockerfile: Dockerfile
+    image: abhisheksankhla121/i_notebook_frontend:latest
     environment:
-      - REACT_APP_BACKEND_URL=http//:localhost:5000
+      - REACT_APP_BACKEND_URL=http://localhost:5000
     ports:
-      - 3001:3000
-    
-    
-    
+      - 3000:3000
+        
+  
+  backend:
+    image: abhisheksankhla121/i_notebook_backend:latest
+    environment:
+      - URL=mongodb+srv://abhisheksankhla121:abhishek123@clusterabhishek.mnvmbsw.mongodb.net/iNotebook
+      - JWT_SECREATE_KEY=THIS-IS-JWT-SECRATE
+    ports:
+      - 5000:3000
+    volumes:
+      - user-images:/app/temp
+  
+volumes:
+  user-images:

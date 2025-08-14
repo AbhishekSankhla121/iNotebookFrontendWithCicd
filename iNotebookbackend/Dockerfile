@@ -7,7 +7,7 @@ COPY package*.json .
 RUN npm install
 
 COPY . .
-
+RUN mkdir -p /app/temp && chown -R node:node /app/temp
 ENV PORT=3000
 
 EXPOSE 3000
