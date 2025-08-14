@@ -31,4 +31,6 @@ RUN npm install -g serve
 
 EXPOSE 3000
 
+USER node
+
 CMD ["serve", "-s", "build", "-l", "3000"]
