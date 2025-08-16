@@ -1,15 +1,28 @@
 name: "iNoteBookCiCD"
 services:
-  frontend:
+  fronten-0:
     image: abhisheksankhla121/i_notebook_frontend:latest
     environment:
-      - REACT_APP_BACKEND_URL=http://localhost:5000
+      - REACT_APP_BACKEND_URL=https://inotebookbackend.fazalbazar.shop/
     ports:
       - 3000:3000
-    depends_on:
-      - backend
-        
-  backend:
+  
+  frontend-1:
+    image: abhisheksankhla121/i_notebook_frontend:latest
+    environment:
+      - REACT_APP_BACKEND_URL=https://inotebookbackend.fazalbazar.shop/
+    ports:
+      - 3001:3000
+  
+  frontend-2:
+    image: abhisheksankhla121/i_notebook_frontend:latest
+    environment:
+      - REACT_APP_BACKEND_URL=https://inotebookbackend.fazalbazar.shop/
+    ports:
+      - 3002:3000
+  
+    
+  backend-0:
     image: abhisheksankhla121/i_notebook_backend:latest
     environment:
       - URL=mongodb://admin:admin@mongo:27017/abhishek?authSource=admin
@@ -22,7 +35,33 @@ services:
       - mongo
     networks:
       - i_notebook_network
-    
+
+  backend-1:
+    image: abhisheksankhla121/i_notebook_backend:latest
+    environment:
+      - URL=mongodb://admin:admin@mongo:27017/abhishek?authSource=admin
+      - JWT_SECREATE_KEY=THIS-IS-JWT-SECRATE
+    ports:
+      - 5001:3000
+    volumes:
+      - ./userimg:/app/temp
+    depends_on:
+      - mongo
+    networks:
+      - i_notebook_network
+  backend-2:
+    image: abhisheksankhla121/i_notebook_backend:latest
+    environment:
+      - URL=mongodb://admin:admin@mongo:27017/abhishek?authSource=admin
+      - JWT_SECREATE_KEY=THIS-IS-JWT-SECRATE
+    ports:
+      - 5002:3000
+    volumes:
+      - ./userimg:/app/temp
+    depends_on:
+      - mongo
+    networks:
+      - i_notebook_network
   
   mongo:
     image: mongo
