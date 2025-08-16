@@ -6,17 +6,52 @@ services:
       - REACT_APP_BACKEND_URL=http://localhost:5000
     ports:
       - 3000:3000
+    depends_on:
+      - backend
         
-  
   backend:
     image: abhisheksankhla121/i_notebook_backend:latest
     environment:
-      - URL=mongodb+srv://abhisheksankhla121:abhishek123@clusterabhishek.mnvmbsw.mongodb.net/iNotebook
+      - URL=mongodb://admin:admin@mongo:27017/abhishek?authSource=admin
       - JWT_SECREATE_KEY=THIS-IS-JWT-SECRATE
     ports:
       - 5000:3000
     volumes:
-      - user-images:/app/temp
+      - ./userimg:/app/temp
+    depends_on:
+      - mongo
+    networks:
+      - i_notebook_network
+    
   
-volumes:
-  user-images:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - 27017:27017
+    volumes:
+      - ./db:/data/db:rw  #
+    networks:
+      - i_notebook_network
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongo
+      
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+      ME_CONFIG_MONGODB_URL: mongodb://admin:admin@mongo:27017/
+      ME_CONFIG_BASICAUTH: false
+
+
+networks:
+  i_notebook_network:
+    driver: bridge
