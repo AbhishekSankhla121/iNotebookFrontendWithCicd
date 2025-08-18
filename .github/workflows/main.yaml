@@ -60,6 +60,8 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
           DOCKER_BACKEND_IMAGE_NAME: ${{ secrets.DOCKER_BACKEND_IMAGE_NAME }}
+          DOCKER_FRONTEND_IMAGE_NAME: ${{ secrets.DOCKER_FRONTEND_IMAGE_NAME }}
+          REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
 
         run: |
          sudo apt-get update -y
@@ -68,6 +70,8 @@ jobs:
           export DOCKER_BACKEND_IMAGE_NAME=$DOCKER_BACKEND_IMAGE_NAME
           export DATABASE_URL=$DATABASE_URL
           export JWT_SECRET_KEY=$JWT_SECRET_KEY
+          export DOCKER_FRONTEND_IMAGE_NAME=$DOCKER_FRONTEND_IMAGE_NAME
+          export REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
           cd /home/ubuntu
           docker pull \$DOCKER_BACKEND_IMAGE_NAME
           docker compose up -d
