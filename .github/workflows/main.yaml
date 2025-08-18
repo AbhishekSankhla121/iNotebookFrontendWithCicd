@@ -18,13 +18,17 @@ jobs:
         id: backend_change
         uses: dorny/paths-filter@v3
         with:
-          filter: 'iNotebookbackend/**'
+          filter: |
+            iNotebookbackend:
+              - 'iNotebookbackend/**'
 
       - name: check for changes in frontend
         id: frontend_change
         uses: dorny/paths-filter@v3
         with:
-          filter: 'iNotebookfrontend/**'
+          filter: |
+            iNotebookfrontend:
+              - 'iNotebookfrontend/**'
 
 
   backend:
