@@ -38,11 +38,9 @@ jobs:
     steps:
       - name: Checkout Code 
         uses: actions/checkout@v4
-        env:
-          DOCKER_BACKEND_IMAGE_NAME: ${{ secrets.DOCKER_BACKEND_IMAGE_NAME }}
       - name: Creating Docker backend image 
         run: |
-          docker buildx build -t abhisheksankhla121/i_notebook_backend:latest ./iNotebookbackend
+          docker buildx build -t ${{ secrets.DOCKER_BACKEND_IMAGE_NAME }} ./iNotebookbackend
       
       - name: Pushing Docker Image
         env: 
