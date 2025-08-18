@@ -62,11 +62,9 @@ jobs:
           DOCKER_BACKEND_IMAGE_NAME: ${{ secrets.DOCKER_BACKEND_IMAGE_NAME }}
 
         run: |
-          sudo apt-get update -y
-          sudo apt-get install -y sshpass
-          sudo sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST_NAME "
-          sudo docker pull $${{ secrets.DOCKER_BACKEND_IMAGE_NAME }} &&
-          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST_NAME "
+         sudo apt-get update -y
+         sudo apt-get install -y sshpass
+         sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST_NAME "
           export DOCKER_BACKEND_IMAGE_NAME=$DOCKER_BACKEND_IMAGE_NAME
           export DATABASE_URL=$DATABASE_URL
           export JWT_SECRET_KEY=$JWT_SECRET_KEY
@@ -74,7 +72,7 @@ jobs:
           docker pull \$DOCKER_BACKEND_IMAGE_NAME
           docker compose up -d --no-deps --build backend-0 backend-1 backend-2
           exit
-          "
+         "
 
 
   frontend:
