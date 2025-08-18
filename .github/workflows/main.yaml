@@ -62,7 +62,7 @@ jobs:
           DOCKER_BACKEND_IMAGE_NAME: ${{ secrets.DOCKER_BACKEND_IMAGE_NAME }}
           DOCKER_FRONTEND_IMAGE_NAME: ${{ secrets.DOCKER_FRONTEND_IMAGE_NAME }}
           REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
-
+          
         run: |
          sudo apt-get update -y
          sudo apt-get install -y sshpass
@@ -117,6 +117,6 @@ jobs:
           sudo sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST_NAME"
           sudo docker pull $DOCKER_FRONTEND_IMAGE_NAME &&
           cd /home/ubuntu &&
-          DOCKER_FRONTEND_IMAGE_NAME=$DOCKER_FRONTEND_IMAGE_NAME REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL sudo docker compose up -d --no-deps --build fronten-0 frontend-1 frontend-2 &&
+          DOCKER_FRONTEND_IMAGE_NAME=$DOCKER_FRONTEND_IMAGE_NAME REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL sudo docker compose up -d --no-deps --build fronten-0 frontend-1 frontend-2  mongo &&
           exit
           "
