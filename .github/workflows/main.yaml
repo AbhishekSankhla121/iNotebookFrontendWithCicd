@@ -8,8 +8,8 @@ jobs:
   check-changes:
     runs-on: ubuntu-latest
     outputs:
-      iNotebookbackend_change: ${{steps.backend_change.outputs.iNotebookbackend}}
-      iNotebookfrontend_change: ${{steps.frontend_change.outputs.iNotebookfrontend}}
+      iNotebookbackend_change: ${{ steps.backend_change.outputs.iNotebookbackend }}
+      iNotebookfrontend_change: ${{ steps.frontend_change.outputs.iNotebookfrontend }}
     steps:
       - name: Checkout code 
         uses: actions/checkout@v4
@@ -18,9 +18,9 @@ jobs:
         id: backend_change
         uses: dorny/paths-filter@v3
         with:
-          filter: |
-            iNotebookbackend:
-              - 'iNotebookbackend/**'
+          filters: |
+           iNotebookbackend:
+             - 'iNotebookbackend/**'
 
       - name: check for changes in frontend
         id: frontend_change
