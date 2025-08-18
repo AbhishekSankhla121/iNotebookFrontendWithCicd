@@ -72,7 +72,7 @@ jobs:
           export JWT_SECRET_KEY=$JWT_SECRET_KEY
           export DOCKER_FRONTEND_IMAGE_NAME=$DOCKER_FRONTEND_IMAGE_NAME
           export REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
-          cd /home/ubuntu
+          cd /home/testing
           docker pull \$DOCKER_BACKEND_IMAGE_NAME
           docker compose up -d
           exit
