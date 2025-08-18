@@ -42,7 +42,7 @@ jobs:
           DOCKER_BACKEND_IMAGE_NAME: ${{ secrets.DOCKER_BACKEND_IMAGE_NAME }}
       - name: Creating Docker backend image 
         run: |
-          docker buildx build -t $DOCKER_BACKEND_IMAGE_NAME ./iNotebookbackend
+          docker buildx build -t abhisheksankhla121/i_notebook_backend:latest ./iNotebookbackend
       
       - name: Pushing Docker Image
         env: 
