@@ -70,7 +70,7 @@ jobs:
           export DATABASE_URL=$DATABASE_URL
           export JWT_SECRET_KEY=$JWT_SECRET_KEY
           cd /home/ubuntu
-          docker pull $DOCKER_BACKEND_IMAGE_NAME
+          docker pull \$DOCKER_BACKEND_IMAGE_NAME
           docker compose up -d --no-deps --build backend-0 backend-1 backend-2
           exit
           "
