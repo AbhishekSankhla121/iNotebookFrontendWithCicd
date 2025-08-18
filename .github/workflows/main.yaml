@@ -37,7 +37,7 @@ jobs:
     if: needs.check-changes.outputs.iNotebookbackend_change == 'true'
     steps:
       - name: Checkout Code 
-        run: actions/checkout@v4
+        uses: actions/checkout@v4
         env:
           DOCKER_BACKEND_IMAGE_NAME: ${{ secrets.DOCKER_BACKEND_IMAGE_NAME }}
       - name: Creating Docker backend image 
@@ -81,7 +81,7 @@ jobs:
     if: needs.check-changes.outputs.iNotebookfrontend_change == 'true'
     steps:
       - name: Checkout Code 
-        run: actions/checkout@v4
+        uses: actions/checkout@v4
         env: 
           DOCKER_FRONTEND_IMAGE_NAME: ${{ secrets.DOCKER_FRONTEND_IMAGE_NAME }}
           REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
