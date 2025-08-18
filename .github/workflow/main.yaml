@@ -1,0 +1,45 @@
+name: iNoteBook-Workflows
+# when changes in branch automatic run jobs
+on:
+  push:
+    branches:
+      - main
+jobs:
+  check-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      iNotebookbackend_change: ${{steps.backend_change.outputs.iNotebookbackend}}
+      iNotebookfrontend_change: ${{steps.frontend_change.outputs.iNotebookfrontend}}
+    steps:
+      - name: Checkout code 
+        uses: actions/checkout@v4
+      
+      - name: check for changes in backend
+        id: backend_change
+        uses: dorny/paths-filter@v3
+        with:
+          filter: 'iNotebookbackend/**'
+
+      - name: check for changes in frontend
+        id: frontend_change
+        uses: dorny/paths-filter@v3
+        with:
+          filter: 'iNotebookfrontend/**'
+
+
+  backend:
+    needs: check-changes
+    runs-on: ubuntu-latest
+    if: needs.check-changes.outputs.iNotebookbackend_change == 'true'
+    steps:
+      - name: Checkout Code 
+        run: echo "backend_change"
+
+  frontend:
+    needs: check-changes
+    runs-on: ubuntu-latest
+    if: needs.check-changes.outputs.iNotebookfrontend_change == 'true'
+    steps:
+      - name: Checkout Code 
+        run: echo "frontend_change"
+    
