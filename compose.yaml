@@ -1,32 +1,32 @@
 name: "iNoteBookCiCD"
 services:
-  fronten-0:
-    image: abhisheksankhla121/i_notebook_frontend:latest
+  frontend-0:
+    image: ${DOCKER_FRONTEND_IMAGE_NAME}
     environment:
-      - REACT_APP_BACKEND_URL=https://inotebookbackend.fazalbazar.shop/
+      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
     ports:
       - 3000:3000
   
   frontend-1:
-    image: abhisheksankhla121/i_notebook_frontend:latest
+    image: ${DOCKER_FRONTEND_IMAGE_NAME}
     environment:
-      - REACT_APP_BACKEND_URL=https://inotebookbackend.fazalbazar.shop/
+      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
     ports:
       - 3001:3000
   
   frontend-2:
-    image: abhisheksankhla121/i_notebook_frontend:latest
+    image: ${DOCKER_FRONTEND_IMAGE_NAME}
     environment:
-      - REACT_APP_BACKEND_URL=https://inotebookbackend.fazalbazar.shop/
+      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
     ports:
       - 3002:3000
   
     
   backend-0:
-    image: abhisheksankhla121/i_notebook_backend:latest
+    image: ${DOCKER_BACKEND_IMAGE_NAME}
     environment:
-      - URL=mongodb://admin:admin@mongo:27017/abhishek?authSource=admin
-      - JWT_SECREATE_KEY=THIS-IS-JWT-SECRATE
+      - URL=${DATABASE_URL}
+      - JWT_SECREATE_KEY=${JWT_SECRET_KEY}
     ports:
       - 5000:3000
     volumes:
@@ -37,10 +37,10 @@ services:
       - i_notebook_network
 
   backend-1:
-    image: abhisheksankhla121/i_notebook_backend:latest
+    image: ${DOCKER_BACKEND_IMAGE_NAME}
     environment:
-      - URL=mongodb://admin:admin@mongo:27017/abhishek?authSource=admin
-      - JWT_SECREATE_KEY=THIS-IS-JWT-SECRATE
+      - URL=${DATABASE_URL}
+      - JWT_SECREATE_KEY=${JWT_SECRET_KEY}
     ports:
       - 5001:3000
     volumes:
@@ -50,10 +50,10 @@ services:
     networks:
       - i_notebook_network
   backend-2:
-    image: abhisheksankhla121/i_notebook_backend:latest
+    image: ${DOCKER_BACKEND_IMAGE_NAME}
     environment:
-      - URL=mongodb://admin:admin@mongo:27017/abhishek?authSource=admin
-      - JWT_SECREATE_KEY=THIS-IS-JWT-SECRATE
+      - URL=${DATABASE_URL}
+      - JWT_SECREATE_KEY=${JWT_SECRET_KEY}
     ports:
       - 5002:3000
     volumes:

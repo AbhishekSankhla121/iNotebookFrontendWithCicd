@@ -37,7 +37,43 @@ jobs:
     if: needs.check-changes.outputs.iNotebookbackend_change == 'true'
     steps:
       - name: Checkout Code 
-        run: echo "backend_change"
+        run: actions/checkout@v4
+        env:
+          DOCKER_BACKEND_IMAGE_NAME: ${{ secrets.DOCKER_BACKEND_IMAGE_NAME }}
+      - name: Creating Docker backend image 
+        run: |
+          cd iNotebookbackend
+          docker buildx build -t $DOCKER_BACKEND_IMAGE_NAME .
+      
+      - name: Pushing Docker Image
+        env: 
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_BACKEND_IMAGE_NAME: ${{ secrets.DOCKER_BACKEND_IMAGE_NAME }}
+        run: |
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME  --password-stdin
+          docker push $DOCKER_BACKEND_IMAGE_NAME  
+          docker logout
+
+      - name: SSH login and Deploy
+        env:
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_HOST_NAME: ${{ secrets.SSH_HOST_NAME }}
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+          DOCKER_BACKEND_IMAGE_NAME: ${{ secrets.DOCKER_BACKEND_IMAGE_NAME }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y sshpass
+          sudo sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST_NAME "
+          sudo docker pull $DOCKER_BACKEND_IMAGE_NAME &&
+          cd /home/ubuntu &&
+          DOCKER_BACKEND_IMAGE_NAME=$DOCKER_BACKEND_IMAGE_NAME DATABASE_URL=$DATABASE_URL JWT_SECRET_KEY=$JWT_SECRET_KEY sudo docker compose up -d --no-deps --build backend-0 backend-1 backend-2 &&
+          exit
+          "
+
 
   frontend:
     needs: check-changes
@@ -45,5 +81,38 @@ jobs:
     if: needs.check-changes.outputs.iNotebookfrontend_change == 'true'
     steps:
       - name: Checkout Code 
-        run: echo "frontend_change"
-    
+        run: actions/checkout@v4
+        env: 
+          DOCKER_FRONTEND_IMAGE_NAME: ${{ secrets.DOCKER_FRONTEND_IMAGE_NAME }}
+          REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
+      - name: Creating docker frontend Image
+        run: |
+          cd iNotebookfrontend
+          docker  buildx build --build-arg REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL  -t $DOCKER_FRONTEND_IMAGE_NAME .
+
+      - name: Pushing Docker Image
+        env: 
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_FRONTEND_IMAGE_NAME: ${{ secrets.DOCKER_FRONTEND_IMAGE_NAME }}
+        run: |
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME  --password-stdin
+          docker push $DOCKER_FRONTEND_IMAGE_NAME
+          docker logout
+
+      - name: SSH login and Deploy
+        env:
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_HOST_NAME: ${{ secrets.SSH_HOST_NAME }}
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+          DOCKER_FRONTEND_IMAGE_NAME: ${{ secrets.DOCKER_FRONTEND_IMAGE_NAME }}
+          REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y sshpass
+          sudo sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST_NAME"
+          sudo docker pull $DOCKER_FRONTEND_IMAGE_NAME &&
+          cd /home/ubuntu &&
+          DOCKER_FRONTEND_IMAGE_NAME=$DOCKER_FRONTEND_IMAGE_NAME REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL sudo docker compose up -d --no-deps --build fronten-0 frontend-1 frontend-2 &&
+          exit
+          "
