@@ -73,6 +73,7 @@ jobs:
           export DOCKER_FRONTEND_IMAGE_NAME=$DOCKER_FRONTEND_IMAGE_NAME
           export REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
           cd /home/testing
+          ifconfig
           docker pull \$DOCKER_BACKEND_IMAGE_NAME
           docker compose up -d
           exit
