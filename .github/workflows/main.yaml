@@ -51,6 +51,10 @@ jobs:
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME  --password-stdin
           docker push $DOCKER_BACKEND_IMAGE_NAME  
           docker logout
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.8.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: SSH login and Deploy
         env:
@@ -66,7 +70,7 @@ jobs:
         run: |
          sudo apt-get update -y
          sudo apt-get install -y sshpass
-         sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST_NAME "
+         ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST_NAME "
           export DOCKER_BACKEND_IMAGE_NAME=$DOCKER_BACKEND_IMAGE_NAME
           export DATABASE_URL=$DATABASE_URL
           export JWT_SECRET_KEY=$JWT_SECRET_KEY
