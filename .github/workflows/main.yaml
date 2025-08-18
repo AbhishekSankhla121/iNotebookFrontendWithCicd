@@ -43,7 +43,7 @@ jobs:
       - name: Creating Docker backend image 
         run: |
           cd iNotebookbackend
-          docker buildx build -t $DOCKER_BACKEND_IMAGE_NAME .
+          docker buildx build -t $DOCKER_BACKEND_IMAGE_NAME ./iNotebookbackend
       
       - name: Pushing Docker Image
         env: 
