@@ -1,61 +1,19 @@
 name: "iNoteBookCiCD"
 services:
-  frontend-0:
+  frontend:
     image: ${DOCKER_FRONTEND_IMAGE_NAME}
     environment:
       - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
     ports:
       - 3000:3000
   
-  frontend-1:
-    image: ${DOCKER_FRONTEND_IMAGE_NAME}
-    environment:
-      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
-    ports:
-      - 3001:3000
-  
-  frontend-2:
-    image: ${DOCKER_FRONTEND_IMAGE_NAME}
-    environment:
-      - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
-    ports:
-      - 3002:3000
-  
-    
-  backend-0:
+  backend:
     image: ${DOCKER_BACKEND_IMAGE_NAME}
     environment:
       - URL=${DATABASE_URL}
       - JWT_SECREATE_KEY=${JWT_SECRET_KEY}
     ports:
       - 5000:3000
-    volumes:
-      - ./userimg:/app/temp
-    depends_on:
-      - mongo
-    networks:
-      - i_notebook_network
-
-  backend-1:
-    image: ${DOCKER_BACKEND_IMAGE_NAME}
-    environment:
-      - URL=${DATABASE_URL}
-      - JWT_SECREATE_KEY=${JWT_SECRET_KEY}
-    ports:
-      - 5001:3000
-    volumes:
-      - ./userimg:/app/temp
-    depends_on:
-      - mongo
-    networks:
-      - i_notebook_network
-  backend-2:
-    image: ${DOCKER_BACKEND_IMAGE_NAME}
-    environment:
-      - URL=${DATABASE_URL}
-      - JWT_SECREATE_KEY=${JWT_SECRET_KEY}
-    ports:
-      - 5002:3000
     volumes:
       - ./userimg:/app/temp
     depends_on:
