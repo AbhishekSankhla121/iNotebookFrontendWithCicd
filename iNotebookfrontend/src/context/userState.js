@@ -98,7 +98,7 @@ const Userstate = (props) => {
             const json = await response.json();
 
             if (json.success) {
-                Alert({ alertMessage: "Success: Note Delete susccessfullydd", alertColor: "#148F77" });
+                Alert({ alertMessage: "Success: Note Delete susccessfullssydd", alertColor: "#148F77" });
             }
         } catch (error) {
             console.log("frontend fetch -> /deletenote error", error)
