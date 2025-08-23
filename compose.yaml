@@ -6,7 +6,6 @@ services:
       - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
     ports:
       - 3000:3000
-    profiles: ["ui"]
   
   backend:
     image: ${DOCKER_BACKEND_IMAGE_NAME}
