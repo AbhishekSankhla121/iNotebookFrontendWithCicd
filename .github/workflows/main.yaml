@@ -113,7 +113,7 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get install -y sshpass
-          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST_NAME"
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST_NAME "
             sudo docker pull $DOCKER_FRONTEND_IMAGE_NAME &&
             cd /home/testing &&
             export DOCKER_FRONTEND_IMAGE_NAME=$DOCKER_FRONTEND_IMAGE_NAME
