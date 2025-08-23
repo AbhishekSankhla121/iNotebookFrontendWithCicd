@@ -90,7 +90,9 @@ jobs:
       - name: Creating docker frontend Image
         run: |
           cd iNotebookfrontend
-          docker  buildx build --build-arg REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL  -t $DOCKER_FRONTEND_IMAGE_NAME .
+          docker  buildx build \
+            --build-arg REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL  
+            -t $DOCKER_FRONTEND_IMAGE_NAME .
 
       - name: Pushing Docker Image
         env: 
