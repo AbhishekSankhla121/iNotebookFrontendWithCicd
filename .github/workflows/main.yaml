@@ -114,7 +114,9 @@ jobs:
           sudo apt-get install -y sshpass
           sudo sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST_NAME"
           sudo docker pull $DOCKER_FRONTEND_IMAGE_NAME &&
-          cd /home/ubuntu &&
+          cd /home/testing &&
+          export DOCKER_FRONTEND_IMAGE_NAME=$DOCKER_FRONTEND_IMAGE_NAME
+          export REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
           sudo docker compose --profile ui up -d &&
           exit
           "
