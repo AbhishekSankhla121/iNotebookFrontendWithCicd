@@ -66,6 +66,15 @@ jobs:
         run: |
          sudo apt-get update -y
          sudo apt-get install -y sshpass
+         echo "🔎 Checking environment variables before SSH..."
+         for var in SSH_USERNAME SSH_PASSWORD SSH_HOST_NAME DOCKER_BACKEND_IMAGE_NAME DATABASE_URL JWT_SECRET_KEY DOCKER_FRONTEND_IMAGE_NAME REACT_APP_BACKEND_URL
+         do
+         if [ -z "${!var}" ]; then
+         echo "❌ $var is NOT set"
+         else
+         echo "✅ $var is set (length: ${#var})"
+         fi
+         done
          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST_NAME "
           export DOCKER_BACKEND_IMAGE_NAME=$DOCKER_BACKEND_IMAGE_NAME
           export DATABASE_URL=$DATABASE_URL
