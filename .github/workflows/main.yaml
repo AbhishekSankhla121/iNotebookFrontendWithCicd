@@ -76,15 +76,13 @@ jobs:
          fi
          done
          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SSH_HOST_NAME "
-          export DOCKER_BACKEND_IMAGE_NAME=$DOCKER_BACKEND_IMAGE_NAME
-          export DATABASE_URL=$DATABASE_URL
-          export JWT_SECRET_KEY=$JWT_SECRET_KEY
-          export DOCKER_FRONTEND_IMAGE_NAME=$DOCKER_FRONTEND_IMAGE_NAME
-          export REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
-          cd /home/testing
-          docker pull \$DOCKER_BACKEND_IMAGE_NAME
-          docker compose up -d backend
-          exit
+         cd /home/testing
+         echo \"DOCKER_BACKEND_IMAGE_NAME=$DOCKER_BACKEND_IMAGE_NAME\" > .env
+         echo \"DATABASE_URL=$DATABASE_URL\" >> .env
+         echo \"JWT_SECRET_KEY=$JWT_SECRET_KEY\" >> .env
+         docker pull \$DOCKER_BACKEND_IMAGE_NAME
+         docker compose --env-file .env up -d backend
+         exit
          "
 
 
