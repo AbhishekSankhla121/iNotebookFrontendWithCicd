@@ -83,7 +83,7 @@ jobs:
           export REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
           cd /home/testing
           docker pull \$DOCKER_BACKEND_IMAGE_NAME
-          docker compose up -d --scale backend
+          docker compose up -d backend
           exit
          "
 
