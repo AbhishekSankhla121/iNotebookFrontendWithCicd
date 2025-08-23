@@ -57,7 +57,7 @@ const Userstate = (props) => {
             }
 
             if (json.message) {
-                console.log("helld")
+                console.log("heldsdld")
                 Alert({ alertMessage: `Error:${json.message.errors[0].msg}`, alertColor: "#EC7063" });
             }
             return json;
