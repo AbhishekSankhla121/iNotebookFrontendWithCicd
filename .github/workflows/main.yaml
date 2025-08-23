@@ -86,14 +86,12 @@ jobs:
         uses: actions/checkout@v4
         env: 
           DOCKER_FRONTEND_IMAGE_NAME: ${{ secrets.DOCKER_FRONTEND_IMAGE_NAME }}
-          DOCKER_FRONTEND_IMAGE_NAME: ${{ secrets.DOCKER_FRONTEND_IMAGE_NAME }}
           REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
       - name: Creating docker frontend Image
         run: |
           cd iNotebookfrontend
-          docker  buildx build \
-            --build-arg REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL  
-            -t $DOCKER_FRONTEND_IMAGE_NAME .
+          docker buildx build --build-arg REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL -t $DOCKER_FRONTEND_IMAGE_NAME .
+
 
       - name: Pushing Docker Image
         env: 
