@@ -17,5 +17,5 @@ app.use("/notes", require('./Routes/notes'));
 app.use("/image", express.static('./temp'))
 
 app.listen(port, () => {
-    console.log(`listen porsssssssasssdxs dd: http://localhosts:${port}`)
+    console.log(`listen porsssssssssasssdxs dd: http://localhosts:${port}`)
 }) 
