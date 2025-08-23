@@ -119,4 +119,4 @@ jobs:
              cd /home/testing
              docker pull \$DOCKER_FRONTEND_IMAGE_NAME
              docker compose --profile ui up -d frontend
-    "
+           "
