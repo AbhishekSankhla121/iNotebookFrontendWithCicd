@@ -8,7 +8,7 @@ services:
       - 3000:3000
     profiles: ["ui"]
   
-  backend-1:
+  backend:
     image: ${DOCKER_BACKEND_IMAGE_NAME}
     environment:
       - URL=${DATABASE_URL}
@@ -22,33 +22,6 @@ services:
     networks:
       - i_notebook_network
 
-  backend-2:
-    image: ${DOCKER_BACKEND_IMAGE_NAME}
-    environment:
-      - URL=${DATABASE_URL}
-      - JWT_SECREATE_KEY=${JWT_SECRET_KEY}
-    ports:
-      - 5001:3000
-    volumes:
-      - ./userimg:/app/temp
-    depends_on:
-      - mongo
-    networks:
-      - i_notebook_network
-  backend-3:
-    image: ${DOCKER_BACKEND_IMAGE_NAME}
-    environment:
-      - URL=${DATABASE_URL}
-      - JWT_SECREATE_KEY=${JWT_SECRET_KEY}
-    ports:
-      - 5002:3000
-    volumes:
-      - ./userimg:/app/temp
-    depends_on:
-      - mongo
-    networks:
-      - i_notebook_network
-  
   mongo:
     image: mongo
     restart: always
@@ -58,7 +31,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ./db:/data/db:rw  #
+      - ./db:/data/db:rw  
     networks:
       - i_notebook_network
 
