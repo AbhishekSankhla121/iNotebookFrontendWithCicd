@@ -126,7 +126,7 @@ const Userstate = (props) => {
 
             fetchUserNote();
             if (json.success) {
-                Alert({ alertMessage: "Success: Note updated successfully", alertColor: "#148F77" });
+                Alert({ alertMessage: "Success: Note updated successfullyy", alertColor: "#148F77" });
 
             }
 

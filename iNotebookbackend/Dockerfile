@@ -10,7 +10,7 @@ COPY . .
 RUN mkdir -p /app/temp && chown -R node:node /app/temp
 ENV PORT=3000
 
-EXPOSE 3000
+EXPOSE 5000
 
 USER node
 
