@@ -4,7 +4,8 @@ services:
     image: ${DOCKER_FRONTEND_IMAGE_NAME}
     environment:
       - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
-
+    ports:
+      - 3000:3000
     networks:
       - i_notebook_network
   
@@ -13,7 +14,8 @@ services:
     environment:
       - URL=${DATABASE_URL}
       - JWT_SECREATE_KEY=${JWT_SECRET_KEY}
-
+    ports:
+      - 5000:3000
     volumes:
       - ./userimg:/app/temp
     depends_on:
