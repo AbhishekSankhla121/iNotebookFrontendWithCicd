@@ -60,8 +60,6 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
           DOCKER_BACKEND_IMAGE_NAME: ${{ secrets.DOCKER_BACKEND_IMAGE_NAME }}
-          DOCKER_FRONTEND_IMAGE_NAME: ${{ secrets.DOCKER_FRONTEND_IMAGE_NAME }}
-          REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
           
         run: |
          sudo apt-get update -y
@@ -72,7 +70,7 @@ jobs:
           export JWT_SECRET_KEY=$JWT_SECRET_KEY
           cd /home/testing
           docker pull \$DOCKER_BACKEND_IMAGE_NAME
-          docker compose up -d  backend
+          docker compose up -d --scale backend=4
           exit
          "
 
@@ -118,6 +116,6 @@ jobs:
             export REACT_APP_BACKEND_URL=https://inotebookbackend.fazalbazar.shop
             cd /home/testing
             docker pull abhisheksankhla121/i_notebook_frontend:latest
-            docker compose up -d frontend
+            docker compose up -d --scale frontend=3
             exit
           "
