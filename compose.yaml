@@ -46,9 +46,9 @@ services:
       - backend
     ports:
       - "80:80"
-      
-  networks:
-    - i_notebook_network
+
+    networks:
+      - i_notebook_network
 
 networks:
   i_notebook_network:
