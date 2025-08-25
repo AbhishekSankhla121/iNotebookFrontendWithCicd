@@ -60,6 +60,8 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
           DOCKER_BACKEND_IMAGE_NAME: ${{ secrets.DOCKER_BACKEND_IMAGE_NAME }}
+          DOCKER_FRONTEND_IMAGE_NAME: abhisheksankhla121/i_notebook_frontend:latest
+          REACT_APP_BACKEND_URL: https://inotebookbackend.fazalbazar.shop
           
         run: |
          sudo apt-get update -y
