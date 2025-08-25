@@ -74,7 +74,7 @@ jobs:
           export REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
           cd /home/testing
           docker pull \$DOCKER_BACKEND_IMAGE_NAME
-          docker compose up -d --scale backend=4
+          docker compose up -d --scale backend=2
           exit
          "
 
@@ -120,6 +120,6 @@ jobs:
             export REACT_APP_BACKEND_URL=https://inotebookbackend.fazalbazar.shop
             cd /home/testing
             docker pull abhisheksankhla121/i_notebook_frontend:latest
-            docker compose up -d --scale frontend=3
+            docker compose up -d --scale frontend=2
             exit
           "
